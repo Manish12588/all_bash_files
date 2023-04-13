@@ -1,0 +1,10 @@
+#!/bin/sh
+
+volumes=$(docker volume ls  --format '{{.Name}}')
+
+for volume in $volumes
+do
+  echo "Volume Name - "$volume
+  containerName=$(docker ps -a --filter volume="$volume"  --format '{{.Names}}' | sed 's/^/  /')
+  echo "Container Name - "$containerName
+done
