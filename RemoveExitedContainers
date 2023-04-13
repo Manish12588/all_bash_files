@@ -1,0 +1,11 @@
+#!/bin/sh
+
+exitedContainers=$(docker ps -a  -f status=exited --format='{{.ID}}')
+echo $exitedContainers
+
+for container in $exitedContainers
+do
+	echo "Removing the '$container' as it's in Exited State."
+        (docker rm  $container)	
+done
+	

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-Containers=$(docker container ls --format='{{.ID}}')
+Containers=$(docker ps  --format='{{.ID}}')
 echo $Containers
 
 for container in $Containers
 do
-	echo "Now It's time to kill the running container :- "$container
+	echo "Stopping the running container :- "$container
 	killingContainer=$(docker kill $container)
 	echo "Successfully killed container :- "$killingContainer
 done
